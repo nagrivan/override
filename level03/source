@@ -1,0 +1,28 @@
+int decrypt() {
+    int s1 = 0x757c7d51;
+    int s2 = 0x67667360;
+    int s3 = 0x7b66737e;
+    int s4 = 0x33617c7d
+    if () {
+        system("/bin/sh");
+    }
+    puts("\nInvalid Password");
+}
+
+int test(int pass, int check_pass) {
+    decrypt();
+    rand();
+}
+
+int main() {
+    int password;
+
+    srand(time(NULL));
+    puts("***********************************");
+    puts("*\t\tlevel03\t\t**");
+    puts("***********************************");
+    printf("Password:");
+    scanf("%d", &password);
+    test(password, 322424845);
+    return 0;
+}
