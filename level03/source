@@ -1,23 +1,82 @@
-int decrypt() {
-    int s1 = 0x757c7d51;
-    int s2 = 0x67667360;
-    int s3 = 0x7b66737e;
-    int s4 = 0x33617c7d
-    if () {
-        system("/bin/sh");
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+
+void decrypt(uint32_t key) {
+    uint8_t buff[] = "Q}|u`sfg~sf{}|a3";
+    uint32_t len = strlen(buff);
+
+    for (uint32_t i = 0; i < len; i++) {
+        buff[i] = buff[i] ^ key;
     }
+
+    if (!strcmp("Congratulations!", buff, 17)) {
+        system("/bin/sh");
+        return ;
+    }
+
     puts("\nInvalid Password");
 }
 
-int test(int pass, int check_pass) {
-    decrypt();
-    rand();
+void test(uint32_t pass, uint32_t check_pass) {
+    uint32_t key = check_pass - pass;
+    switch (key) {
+        case 1:
+            return decrypt(key);
+            break;
+        case 2:
+            return decrypt(key);
+            break;
+        case 3:
+            return decrypt(key);
+            break;
+        case 4:
+            return decrypt(key);
+            break;
+        case 5:
+            return decrypt(key);
+            break;
+        case 6:
+            return decrypt(key);
+            break;
+        case 7:
+            return decrypt(key);
+            break;
+        case 8:
+            return decrypt(key);
+            break;
+        case 9:
+            return decrypt(key);
+            break;
+        case 16:
+            return decrypt(key);
+            break;
+        case 17:
+            return decrypt(key);
+            break;
+        case 18:
+            return decrypt(key);
+            break;
+        case 19:
+            return decrypt(key);
+            break;
+        case 20:
+            return decrypt(key);
+            break;
+        case 21:
+            return decrypt(key);
+            break;
+        default:
+            return decrypt(rand());
+            break;
+    }
 }
 
 int main() {
     int password;
 
-    srand(time(NULL));
+    srand(time(0));
     puts("***********************************");
     puts("*\t\tlevel03\t\t**");
     puts("***********************************");

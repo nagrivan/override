@@ -15,15 +15,7 @@ ________________________________________________________________________________
 (gdb) disass main
 ------------------------------------------------------
 Dump of assembler code for function main:
-   0x0804885a <+0>:	push   %ebp
-   0x0804885b <+1>:	mov    %esp,%ebp
-   0x0804885d <+3>:	and    $0xfffffff0,%esp
-   0x08048860 <+6>:	sub    $0x20,%esp
-   0x08048863 <+9>:	push   %eax
-   0x08048864 <+10>:	xor    %eax,%eax
-   0x08048866 <+12>:	je     0x804886b <main+17>
-   0x08048868 <+14>:	add    $0x4,%esp
-   0x0804886b <+17>:	pop    %eax
+   (...)
    0x0804886c <+18>:	movl   $0x0,(%esp)                          ""
    0x08048873 <+25>:	call   0x80484b0 <time@plt>
    0x08048878 <+30>:	mov    %eax,(%esp)
@@ -52,156 +44,12 @@ Dump of assembler code for function main:
 End of assembler dump.
 ___________________________________________________________________________________________________________
 
-___________________________________________________________________________________________________________
-(gdb) i var
-All defined variables:
-
-Non-debugging symbols:
-0x080489b8  _fp_hw
-0x080489bc  _IO_stdin_used
-0x08048c50  __FRAME_END__
-0x08049f14  __CTOR_LIST__
-0x08049f14  __init_array_end
-0x08049f14  __init_array_start
-0x08049f18  __CTOR_END__
-0x08049f1c  __DTOR_LIST__
-0x08049f20  __DTOR_END__
-0x08049f24  __JCR_END__
-0x08049f24  __JCR_LIST__
-0x08049f28  _DYNAMIC
-0x08049ff4  _GLOBAL_OFFSET_TABLE_
-0x0804a030  __data_start
-0x0804a030  data_start
-0x0804a034  __dso_handle
-0x0804a040  stdout@@GLIBC_2.0
-0x0804a044  completed.6159
-0x0804a048  dtor_idx.6161
-0xf7ffcca0  _rtld_global_ro
-0xf7ffce68  _dl_argv
-0xf7ffcf10  __libc_stack_end
-0xf7ffcf14  __libc_enable_secure
-0xf7ffd020  _rtld_global
-0xf7ffd904  _r_debug
-0x00000004  __resp
-0x00000008  errno
-0x00000034  h_errno
-0xf7f85620  _itoa_lower_digits
-0xf7f87930  in6addr_loopback
-0xf7f87940  in6addr_any
-0xf7f89597  _libc_intl_domainname
-0xf7f89673  _nl_default_dirname
-0xf7f91d34  _sys_nerr
-0xf7f91d34  sys_nerr
-0xf7f91d38  _sys_nerr
-0xf7f91d38  sys_nerr
-0xf7f91d3c  _sys_nerr
-0xf7f91d3c  sys_nerr
-0xf7f91d40  _sys_nerr
-0xf7f91d40  sys_nerr
-0xf7f91d44  _sys_nerr
-0xf7f91d44  sys_nerr
-0xf7f91d50  h_nerr
-0xf7fcd320  _sys_errlist
-0xf7fcd320  sys_errlist
-0xf7fcd540  _sys_siglist
-0xf7fcd540  sys_siglist
-0xf7fcd660  sys_sigabbrev
-0xf7fcd970  h_errlist
-0xf7fce900  _IO_wfile_jumps
-0xf7fcea80  _IO_file_jumps
-0xf7fcf044  __fpu_control
-0xf7fcf15c  obstack_exit_failure
-0xf7fcf180  optopt
-0xf7fcf184  opterr
-0xf7fcf188  optind
-0xf7fcf18c  re_max_failures
-0xf7fcf224  argp_err_exit_status
-0xf7fcf22c  __check_rhosts_file
-0xf7fcf420  __memalign_hook
----Type <return> to continue, or q <return> to quit---
-0xf7fcf424  __realloc_hook
-0xf7fcf428  __malloc_hook
-0xf7fcf890  obstack_alloc_failed_handler
-0xf7fcf894  __tzname
-0xf7fcf894  tzname
-0xf7fcf89c  __progname
-0xf7fcf89c  program_invocation_short_name
-0xf7fcf8a0  __progname_full
-0xf7fcf8a0  program_invocation_name
-0xf7fcf934  __ctype32_toupper
-0xf7fcf938  __ctype32_tolower
-0xf7fcf93c  __ctype_toupper
-0xf7fcf940  __ctype_tolower
-0xf7fcf944  __ctype32_b
-0xf7fcf948  __ctype_b
-0xf7fcf960  _IO_list_all
-0xf7fcf980  _IO_2_1_stderr_
-0xf7fcfa20  _IO_2_1_stdout_
-0xf7fcfac0  _IO_2_1_stdin_
-0xf7fcfd9c  stderr
-0xf7fcfda0  stdout
-0xf7fcfda4  stdin
-0xf7fcfdc0  _IO_stderr_
-0xf7fcfe20  _IO_stdout_
-0xf7fcfe80  _IO_stdin_
-0xf7fcfed0  __morecore
-0xf7fd0184  __abort_msg
-0xf7fd08f4  __after_morecore_hook
-0xf7fd08f8  __free_hook
-0xf7fd08fc  __malloc_initialize_hook
-0xf7fd0b40  __timezone
-0xf7fd0b40  timezone
-0xf7fd0b44  __daylight
-0xf7fd0b44  daylight
-0xf7fd0e04  __environ
-0xf7fd0e04  _environ
-0xf7fd0e04  environ
-0xf7fd0e14  ___brk_addr
-0xf7fd0e14  __curbrk
-0xf7fd1c80  _res
-0xf7fd2314  _null_auth
-0xf7fd2660  _dl_open_hook
-0xf7fd2714  _nl_domain_bindings
-0xf7fd2718  _nl_msg_cat_cntr
-0xf7fd27d0  mallwatch
-0xf7fd27d4  _obstack
-0xf7fd2814  getdate_err
-0xf7fd2824  optarg
-0xf7fd2828  re_syntax_options
-0xf7fd282c  error_one_per_line
-0xf7fd2830  error_print_progname
-0xf7fd2834  error_message_count
-0xf7fd2838  loc1
-0xf7fd283c  loc2
-0xf7fd2840  locs
-0xf7fd2850  argp_program_bug_address
-0xf7fd2854  argp_program_version
-0xf7fd2858  argp_program_version_hook
-0xf7fd2960  _res_hconf
-0xf7fd29d4  __rcmd_errstr
-0xf7fd29d8  rexecoptions
-0xf7fd29e0  svc_max_pollfd
-0xf7fd29e4  svc_pollfd
-0xf7fd2a00  svc_fdset
----Type <return> to continue, or q <return> to quit---
-0xf7fd2a80  rpc_createerr
-0xf7fd2a90  svcauthdes_stats
-0xf7fd2a9c  __key_encryptsession_pk_LOCAL
-0xf7fd2aa0  __key_gendes_LOCAL
-0xf7fd2aa4  __key_decryptsession_pk_LOCAL
-___________________________________________________________________________________________________________
+Программа считывает пароль и отправляет в функцию test вместе с числом 322424845. Посмотрим эту функцию:
 
 ___________________________________________________________________________________________________________
 (gdb) disass test
 Dump of assembler code for function test:
-   0x08048747 <+0>:	push   %ebp
-   0x08048748 <+1>:	mov    %esp,%ebp
-   0x0804874a <+3>:	sub    $0x28,%esp
-   0x0804874d <+6>:	mov    0x8(%ebp),%eax
-   0x08048750 <+9>:	mov    0xc(%ebp),%edx
-   0x08048753 <+12>:	mov    %edx,%ecx
-   0x08048755 <+14>:	sub    %eax,%ecx
-   0x08048757 <+16>:	mov    %ecx,%eax
+   (...)
    0x08048759 <+18>:	mov    %eax,-0xc(%ebp)
    0x0804875c <+21>:	cmpl   $0x15,-0xc(%ebp)                                 21
    0x08048760 <+25>:	ja     0x804884a <test+259>
@@ -273,24 +121,15 @@ Dump of assembler code for function test:
    0x0804884a <+259>:	call   0x8048520 <rand@plt>
    0x0804884f <+264>:	mov    %eax,(%esp)
    0x08048852 <+267>:	call   0x8048660 <decrypt>
-   0x08048857 <+272>:	nop
-   0x08048858 <+273>:	leave
-   0x08048859 <+274>:	ret
+   (...)
 End of assembler dump.
 ___________________________________________________________________________________________________________
-
+Мы видим дерево if/else где всегда вызывается функция decrypt.
 ___________________________________________________________________________________________________________
 (gdb) disass decrypt
 Dump of assembler code for function decrypt:
-   0x08048660 <+0>:	push   %ebp
-   0x08048661 <+1>:	mov    %esp,%ebp
-   0x08048663 <+3>:	push   %edi
-   0x08048664 <+4>:	push   %esi
-   0x08048665 <+5>:	sub    $0x40,%esp
-   0x08048668 <+8>:	mov    %gs:0x14,%eax
-   0x0804866e <+14>:	mov    %eax,-0xc(%ebp)
-   0x08048671 <+17>:	xor    %eax,%eax
-   0x08048673 <+19>:	movl   $0x757c7d51,-0x1d(%ebp)                 'Q'
+   (...)
+   0x08048673 <+19>:	movl   $0x757c7d51,-0x1d(%ebp)         Q}|u`sfg~sf{}|a3
    0x0804867a <+26>:	movl   $0x67667360,-0x19(%ebp)
    0x08048681 <+33>:	movl   $0x7b66737e,-0x15(%ebp)
    0x08048688 <+40>:	movl   $0x33617c7d,-0x11(%ebp)
@@ -310,8 +149,8 @@ Dump of assembler code for function decrypt:
    0x080486b4 <+84>:	mov    %ecx,%eax
    0x080486b6 <+86>:	not    %eax
    0x080486b8 <+88>:	sub    $0x1,%eax
-   0x080486bb <+91>:	mov    %eax,-0x24(%ebp)
-   0x080486be <+94>:	movl   $0x0,-0x28(%ebp)
+   0x080486bb <+91>:	mov    %eax,-0x24(%ebp)                36
+   0x080486be <+94>:	movl   $0x0,-0x28(%ebp)                40
    0x080486c5 <+101>:	jmp    0x80486e5 <decrypt+133>
    0x080486c7 <+103>:	lea    -0x1d(%ebp),%eax
    0x080486ca <+106>:	add    -0x28(%ebp),%eax
@@ -356,5 +195,160 @@ Dump of assembler code for function decrypt:
    0x08048744 <+228>:	pop    %edi
    0x08048745 <+229>:	pop    %ebp
    0x08048746 <+230>:	ret
+-----------------------------------------------------------------------------------------------------------
+(lldb) memory read --format C 0x8048673
+0x08048673: .E.Q}|u.E.`sfg.E.~sf{.E.}|a3.E..
 ___________________________________________________________________________________________________________
 
+Мы видим, что здесь при совпадении некой строки со строкой "Congratulations!" предоставляется доступ к shell.
+Так же есть строка Q}|u`sfg~sf{}|a3, которая проходит XOR операцию с участием некоего ключа и после как раз сравнивается с нужной строкой.
+Ключ получается в результате вычитания из 322424845 значения, поданного пользователем, но если результат не находится в диапозонах от 1 до 9 или от 16 до 21,
+то расшифровщику передается рандомное значение. Осталось узнать путем подбора, какое именно значение нужно передать. Здесь вспоминаем level02:
+_____________________________________________________________________________________________________________________
+level03@OverRide:~$ for ((i=0; i<22; i++)); do let res=322424845-"$i";echo $res ; ./level03 <<< `echo  $res` ; done
+
+322424845
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424844
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424843
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424842
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424841
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424840
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424839
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424838
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424837
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424836
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424835
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424834
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424833
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424832
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424831
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424830
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424829
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424828
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424827
+***********************************
+*		level03		**
+***********************************
+Password:322424826
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424825
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+322424824
+***********************************
+*		level03		**
+***********************************
+Password:
+Invalid Password
+_____________________________________________________________________________________________________________________
+Кажется, 322424827 подходящий нам вариант. Пробуем:
+_____________________________________________________________________________________________________________________
+level03@OverRide:~$ ./level03
+***********************************
+*		level03		**
+***********************************
+Password:322424827
+_____________________________________________________________________________________________________________________
+$ whoami
+level04
+_____________________________________________________________________________________________________________________
+$ cat /home/users/level04/.pass
+kgv3tkEb9h2mLkRsPkXRfc2mHbjMxQzvb2FrgKkf
+_____________________________________________________________________________________________________________________
