@@ -1,0 +1,376 @@
+(gdb) i func
+All defined functions:
+
+Non-debugging symbols:
+0x0804842c  _init
+0x08048470  printf
+0x08048470  printf@plt
+0x08048480  fflush
+0x08048480  fflush@plt
+0x08048490  getchar
+0x08048490  getchar@plt
+0x080484a0  fgets
+0x080484a0  fgets@plt
+0x080484b0  __stack_chk_fail
+0x080484b0  __stack_chk_fail@plt
+0x080484c0  puts
+0x080484c0  puts@plt
+0x080484d0  __gmon_start__
+0x080484d0  __gmon_start__@plt
+0x080484e0  __libc_start_main
+0x080484e0  __libc_start_main@plt
+0x080484f0  memset
+0x080484f0  memset@plt
+0x08048500  __isoc99_scanf
+0x08048500  __isoc99_scanf@plt
+0x08048510  _start
+0x08048540  __do_global_dtors_aux
+0x080485a0  frame_dummy
+0x080485c4  clear_stdin
+0x080485e7  get_unum
+0x0804861f  prog_timeout
+0x08048630  store_number
+0x080486d7  read_number
+0x08048723  main
+0x08048a00  __libc_csu_init
+0x08048a70  __libc_csu_fini
+0x08048a72  __i686.get_pc_thunk.bx
+0x08048a80  __do_global_ctors_aux
+0x08048aac  _fini
+
+
+(lldb) disass -n main
+level07`main:
+level07[0x8048723] <+0>:   pushl  %ebp
+level07[0x8048724] <+1>:   movl   %esp, %ebp
+level07[0x8048726] <+3>:   pushl  %edi
+level07[0x8048727] <+4>:   pushl  %esi
+level07[0x8048728] <+5>:   pushl  %ebx
+level07[0x8048729] <+6>:   andl   $-0x10, %esp
+level07[0x804872c] <+9>:   subl   $0x1d0, %esp              ; imm = 0x1D0
+level07[0x8048732] <+15>:  movl   0xc(%ebp), %eax
+level07[0x8048735] <+18>:  movl   %eax, 0x1c(%esp)
+level07[0x8048739] <+22>:  movl   0x10(%ebp), %eax
+level07[0x804873c] <+25>:  movl   %eax, 0x18(%esp)
+level07[0x8048740] <+29>:  movl   %gs:0x14, %eax
+level07[0x8048746] <+35>:  movl   %eax, 0x1cc(%esp)
+level07[0x804874d] <+42>:  xorl   %eax, %eax
+level07[0x804874f] <+44>:  movl   $0x0, 0x1b4(%esp)
+level07[0x804875a] <+55>:  movl   $0x0, 0x1b8(%esp)
+level07[0x8048765] <+66>:  movl   $0x0, 0x1bc(%esp)
+level07[0x8048770] <+77>:  movl   $0x0, 0x1c0(%esp)
+level07[0x804877b] <+88>:  movl   $0x0, 0x1c4(%esp)
+level07[0x8048786] <+99>:  movl   $0x0, 0x1c8(%esp)
+level07[0x8048791] <+110>: leal   0x24(%esp), %ebx
+level07[0x8048795] <+114>: movl   $0x0, %eax
+level07[0x804879a] <+119>: movl   $0x64, %edx
+level07[0x804879f] <+124>: movl   %ebx, %edi
+level07[0x80487a1] <+126>: movl   %edx, %ecx
+level07[0x80487a3] <+128>: rep    stosl	%eax, %es:(%edi)
+level07[0x80487a5] <+130>: jmp    0x80487ea                 ; <+199>
+level07[0x80487a7] <+132>: movl   0x1c(%esp), %eax
+level07[0x80487ab] <+136>: movl   (%eax), %eax
+level07[0x80487ad] <+138>: movl   $0xffffffff, 0x14(%esp)   ; imm = 0xFFFFFFFF
+level07[0x80487b5] <+146>: movl   %eax, %edx
+level07[0x80487b7] <+148>: movl   $0x0, %eax
+level07[0x80487bc] <+153>: movl   0x14(%esp), %ecx
+level07[0x80487c0] <+157>: movl   %edx, %edi
+level07[0x80487c2] <+159>: repne  scasb	%es:(%edi), %al
+level07[0x80487c4] <+161>: movl   %ecx, %eax
+level07[0x80487c6] <+163>: notl   %eax
+level07[0x80487c8] <+165>: leal   -0x1(%eax), %edx
+level07[0x80487cb] <+168>: movl   0x1c(%esp), %eax
+level07[0x80487cf] <+172>: movl   (%eax), %eax
+level07[0x80487d1] <+174>: movl   %edx, 0x8(%esp)
+level07[0x80487d5] <+178>: movl   $0x0, 0x4(%esp)
+level07[0x80487dd] <+186>: movl   %eax, (%esp)
+level07[0x80487e0] <+189>: calll  0x80484f0                 ; symbol stub for: memset
+level07[0x80487e5] <+194>: addl   $0x4, 0x1c(%esp)
+level07[0x80487ea] <+199>: movl   0x1c(%esp), %eax
+level07[0x80487ee] <+203>: movl   (%eax), %eax
+level07[0x80487f0] <+205>: testl  %eax, %eax
+level07[0x80487f2] <+207>: jne    0x80487a7                 ; <+132>
+level07[0x80487f4] <+209>: jmp    0x8048839                 ; <+278>
+level07[0x80487f6] <+211>: movl   0x18(%esp), %eax
+level07[0x80487fa] <+215>: movl   (%eax), %eax
+level07[0x80487fc] <+217>: movl   $0xffffffff, 0x14(%esp)   ; imm = 0xFFFFFFFF
+level07[0x8048804] <+225>: movl   %eax, %edx
+level07[0x8048806] <+227>: movl   $0x0, %eax
+level07[0x804880b] <+232>: movl   0x14(%esp), %ecx
+level07[0x804880f] <+236>: movl   %edx, %edi
+level07[0x8048811] <+238>: repne  scasb	%es:(%edi), %al
+level07[0x8048813] <+240>: movl   %ecx, %eax
+level07[0x8048815] <+242>: notl   %eax
+level07[0x8048817] <+244>: leal   -0x1(%eax), %edx
+level07[0x804881a] <+247>: movl   0x18(%esp), %eax
+level07[0x804881e] <+251>: movl   (%eax), %eax
+level07[0x8048820] <+253>: movl   %edx, 0x8(%esp)
+level07[0x8048824] <+257>: movl   $0x0, 0x4(%esp)
+level07[0x804882c] <+265>: movl   %eax, (%esp)
+level07[0x804882f] <+268>: calll  0x80484f0                 ; symbol stub for: memset
+level07[0x8048834] <+273>: addl   $0x4, 0x18(%esp)
+level07[0x8048839] <+278>: movl   0x18(%esp), %eax
+level07[0x804883d] <+282>: movl   (%eax), %eax
+level07[0x804883f] <+284>: testl  %eax, %eax
+level07[0x8048841] <+286>: jne    0x80487f6                 ; <+211>
+level07[0x8048843] <+288>: movl   $0x8048b38, (%esp)        ; imm = 0x8048B38
+level07[0x804884a] <+295>: calll  0x80484c0                 ; symbol stub for: puts
+level07[0x804884f] <+300>: movl   $0x8048d4b, %eax          ; imm = 0x8048D4B
+level07[0x8048854] <+305>: movl   %eax, (%esp)
+level07[0x8048857] <+308>: calll  0x8048470                 ; symbol stub for: printf
+level07[0x804885c] <+313>: movl   $0x1, 0x1b4(%esp)
+level07[0x8048867] <+324>: movl   0x804a040, %eax
+level07[0x804886c] <+329>: movl   %eax, 0x8(%esp)
+level07[0x8048870] <+333>: movl   $0x14, 0x4(%esp)
+level07[0x8048878] <+341>: leal   0x1b8(%esp), %eax
+level07[0x804887f] <+348>: movl   %eax, (%esp)
+level07[0x8048882] <+351>: calll  0x80484a0                 ; symbol stub for: fgets
+level07[0x8048887] <+356>: leal   0x1b8(%esp), %eax
+level07[0x804888e] <+363>: movl   $0xffffffff, 0x14(%esp)   ; imm = 0xFFFFFFFF
+level07[0x8048896] <+371>: movl   %eax, %edx
+level07[0x8048898] <+373>: movl   $0x0, %eax
+level07[0x804889d] <+378>: movl   0x14(%esp), %ecx
+level07[0x80488a1] <+382>: movl   %edx, %edi
+level07[0x80488a3] <+384>: repne  scasb	%es:(%edi), %al
+level07[0x80488a5] <+386>: movl   %ecx, %eax
+level07[0x80488a7] <+388>: notl   %eax
+level07[0x80488a9] <+390>: subl   $0x1, %eax
+level07[0x80488ac] <+393>: subl   $0x1, %eax
+level07[0x80488af] <+396>: movb   $0x0, 0x1b8(%esp,%eax)
+level07[0x80488b7] <+404>: leal   0x1b8(%esp), %eax
+level07[0x80488be] <+411>: movl   %eax, %edx
+level07[0x80488c0] <+413>: movl   $0x8048d5b, %eax          ; imm = 0x8048D5B
+level07[0x80488c5] <+418>: movl   $0x5, %ecx
+level07[0x80488ca] <+423>: movl   %edx, %esi
+level07[0x80488cc] <+425>: movl   %eax, %edi
+level07[0x80488ce] <+427>: rep    cmpsb	%es:(%edi), (%esi)
+level07[0x80488d0] <+429>: seta   %dl
+level07[0x80488d3] <+432>: setb   %al
+level07[0x80488d6] <+435>: movl   %edx, %ecx
+level07[0x80488d8] <+437>: subb   %al, %cl
+level07[0x80488da] <+439>: movl   %ecx, %eax
+level07[0x80488dc] <+441>: movsbl %al, %eax
+level07[0x80488df] <+444>: testl  %eax, %eax
+level07[0x80488e1] <+446>: jne    0x80488f8                 ; <+469>
+level07[0x80488e3] <+448>: leal   0x24(%esp), %eax
+level07[0x80488e7] <+452>: movl   %eax, (%esp)
+level07[0x80488ea] <+455>: calll  0x8048630                 ; store_number
+level07[0x80488ef] <+460>: movl   %eax, 0x1b4(%esp)
+level07[0x80488f6] <+467>: jmp    0x8048965                 ; <+578>
+level07[0x80488f8] <+469>: leal   0x1b8(%esp), %eax
+level07[0x80488ff] <+476>: movl   %eax, %edx
+level07[0x8048901] <+478>: movl   $0x8048d61, %eax          ; imm = 0x8048D61
+level07[0x8048906] <+483>: movl   $0x4, %ecx
+level07[0x804890b] <+488>: movl   %edx, %esi
+level07[0x804890d] <+490>: movl   %eax, %edi
+level07[0x804890f] <+492>: rep    cmpsb	%es:(%edi), (%esi)
+level07[0x8048911] <+494>: seta   %dl
+level07[0x8048914] <+497>: setb   %al
+level07[0x8048917] <+500>: movl   %edx, %ecx
+level07[0x8048919] <+502>: subb   %al, %cl
+level07[0x804891b] <+504>: movl   %ecx, %eax
+level07[0x804891d] <+506>: movsbl %al, %eax
+level07[0x8048920] <+509>: testl  %eax, %eax
+level07[0x8048922] <+511>: jne    0x8048939                 ; <+534>
+level07[0x8048924] <+513>: leal   0x24(%esp), %eax
+level07[0x8048928] <+517>: movl   %eax, (%esp)
+level07[0x804892b] <+520>: calll  0x80486d7                 ; read_number
+level07[0x8048930] <+525>: movl   %eax, 0x1b4(%esp)
+level07[0x8048937] <+532>: jmp    0x8048965                 ; <+578>
+level07[0x8048939] <+534>: leal   0x1b8(%esp), %eax
+level07[0x8048940] <+541>: movl   %eax, %edx
+level07[0x8048942] <+543>: movl   $0x8048d66, %eax          ; imm = 0x8048D66
+level07[0x8048947] <+548>: movl   $0x4, %ecx
+level07[0x804894c] <+553>: movl   %edx, %esi
+level07[0x804894e] <+555>: movl   %eax, %edi
+level07[0x8048950] <+557>: rep    cmpsb	%es:(%edi), (%esi)
+level07[0x8048952] <+559>: seta   %dl
+level07[0x8048955] <+562>: setb   %al
+level07[0x8048958] <+565>: movl   %edx, %ecx
+level07[0x804895a] <+567>: subb   %al, %cl
+level07[0x804895c] <+569>: movl   %ecx, %eax
+level07[0x804895e] <+571>: movsbl %al, %eax
+level07[0x8048961] <+574>: testl  %eax, %eax
+level07[0x8048963] <+576>: je     0x80489cf                 ; <+684>
+level07[0x8048965] <+578>: cmpl   $0x0, 0x1b4(%esp)
+level07[0x804896d] <+586>: je     0x8048989                 ; <+614>
+level07[0x804896f] <+588>: movl   $0x8048d6b, %eax          ; imm = 0x8048D6B
+level07[0x8048974] <+593>: leal   0x1b8(%esp), %edx
+level07[0x804897b] <+600>: movl   %edx, 0x4(%esp)
+level07[0x804897f] <+604>: movl   %eax, (%esp)
+level07[0x8048982] <+607>: calll  0x8048470                 ; symbol stub for: printf
+level07[0x8048987] <+612>: jmp    0x80489a1                 ; <+638>
+level07[0x8048989] <+614>: movl   $0x8048d88, %eax          ; imm = 0x8048D88
+level07[0x804898e] <+619>: leal   0x1b8(%esp), %edx
+level07[0x8048995] <+626>: movl   %edx, 0x4(%esp)
+level07[0x8048999] <+630>: movl   %eax, (%esp)
+level07[0x804899c] <+633>: calll  0x8048470                 ; symbol stub for: printf
+level07[0x80489a1] <+638>: leal   0x1b8(%esp), %eax
+level07[0x80489a8] <+645>: movl   $0x0, (%eax)
+level07[0x80489ae] <+651>: movl   $0x0, 0x4(%eax)
+level07[0x80489b5] <+658>: movl   $0x0, 0x8(%eax)
+level07[0x80489bc] <+665>: movl   $0x0, 0xc(%eax)
+level07[0x80489c3] <+672>: movl   $0x0, 0x10(%eax)
+level07[0x80489ca] <+679>: jmp    0x804884f                 ; <+300>
+level07[0x80489cf] <+684>: nop
+level07[0x80489d0] <+685>: movl   $0x0, %eax
+level07[0x80489d5] <+690>: movl   0x1cc(%esp), %esi
+level07[0x80489dc] <+697>: xorl   %gs:0x14, %esi
+level07[0x80489e3] <+704>: je     0x80489ea                 ; <+711>
+level07[0x80489e5] <+706>: calll  0x80484b0                 ; symbol stub for: __stack_chk_fail
+level07[0x80489ea] <+711>: leal   -0xc(%ebp), %esp
+level07[0x80489ed] <+714>: popl   %ebx
+level07[0x80489ee] <+715>: popl   %esi
+level07[0x80489ef] <+716>: popl   %edi
+level07[0x80489f0] <+717>: popl   %ebp
+level07[0x80489f1] <+718>: retl
+
+
+
+(lldb) disass -n read_number
+level07`read_number:
+level07[0x80486d7] <+0>:  pushl  %ebp
+level07[0x80486d8] <+1>:  movl   %esp, %ebp
+level07[0x80486da] <+3>:  subl   $0x28, %esp
+level07[0x80486dd] <+6>:  movl   $0x0, -0xc(%ebp)
+level07[0x80486e4] <+13>: movl   $0x8048add, %eax          ; imm = 0x8048ADD
+level07[0x80486e9] <+18>: movl   %eax, (%esp)
+level07[0x80486ec] <+21>: calll  0x8048470                 ; symbol stub for: printf
+level07[0x80486f1] <+26>: calll  0x80485e7                 ; get_unum
+level07[0x80486f6] <+31>: movl   %eax, -0xc(%ebp)
+level07[0x80486f9] <+34>: movl   -0xc(%ebp), %eax
+level07[0x80486fc] <+37>: shll   $0x2, %eax
+level07[0x80486ff] <+40>: addl   0x8(%ebp), %eax
+level07[0x8048702] <+43>: movl   (%eax), %edx
+level07[0x8048704] <+45>: movl   $0x8048b1b, %eax          ; imm = 0x8048B1B
+level07[0x8048709] <+50>: movl   %edx, 0x8(%esp)
+level07[0x804870d] <+54>: movl   -0xc(%ebp), %edx
+level07[0x8048710] <+57>: movl   %edx, 0x4(%esp)
+level07[0x8048714] <+61>: movl   %eax, (%esp)
+level07[0x8048717] <+64>: calll  0x8048470                 ; symbol stub for: printf
+level07[0x804871c] <+69>: movl   $0x0, %eax
+level07[0x8048721] <+74>: leave
+level07[0x8048722] <+75>: retl
+
+
+
+(lldb) disass -n store_number
+level07`store_number:
+level07[0x8048630] <+0>:   pushl  %ebp
+level07[0x8048631] <+1>:   movl   %esp, %ebp
+level07[0x8048633] <+3>:   subl   $0x28, %esp
+level07[0x8048636] <+6>:   movl   $0x0, -0x10(%ebp)
+level07[0x804863d] <+13>:  movl   $0x0, -0xc(%ebp)
+level07[0x8048644] <+20>:  movl   $0x8048ad3, %eax          ; imm = 0x8048AD3
+level07[0x8048649] <+25>:  movl   %eax, (%esp)
+level07[0x804864c] <+28>:  calll  0x8048470                 ; symbol stub for: printf
+level07[0x8048651] <+33>:  calll  0x80485e7                 ; get_unum
+level07[0x8048656] <+38>:  movl   %eax, -0x10(%ebp)
+level07[0x8048659] <+41>:  movl   $0x8048add, %eax          ; imm = 0x8048ADD
+level07[0x804865e] <+46>:  movl   %eax, (%esp)
+level07[0x8048661] <+49>:  calll  0x8048470                 ; symbol stub for: printf
+level07[0x8048666] <+54>:  calll  0x80485e7                 ; get_unum
+level07[0x804866b] <+59>:  movl   %eax, -0xc(%ebp)
+level07[0x804866e] <+62>:  movl   -0xc(%ebp), %ecx
+level07[0x8048671] <+65>:  movl   $0xaaaaaaab, %edx         ; imm = 0xAAAAAAAB
+level07[0x8048676] <+70>:  movl   %ecx, %eax
+level07[0x8048678] <+72>:  mull   %edx
+level07[0x804867a] <+74>:  shrl   %edx
+level07[0x804867c] <+76>:  movl   %edx, %eax
+level07[0x804867e] <+78>:  addl   %eax, %eax
+level07[0x8048680] <+80>:  addl   %edx, %eax
+level07[0x8048682] <+82>:  movl   %ecx, %edx
+level07[0x8048684] <+84>:  subl   %eax, %edx
+level07[0x8048686] <+86>:  testl  %edx, %edx
+level07[0x8048688] <+88>:  je     0x8048697                 ; <+103>
+level07[0x804868a] <+90>:  movl   -0x10(%ebp), %eax
+level07[0x804868d] <+93>:  shrl   $0x18, %eax
+level07[0x8048690] <+96>:  cmpl   $0xb7, %eax
+level07[0x8048695] <+101>: jne    0x80486c2                 ; <+146>
+level07[0x8048697] <+103>: movl   $0x8048ae6, (%esp)        ; imm = 0x8048AE6
+level07[0x804869e] <+110>: calll  0x80484c0                 ; symbol stub for: puts
+level07[0x80486a3] <+115>: movl   $0x8048af8, (%esp)        ; imm = 0x8048AF8
+level07[0x80486aa] <+122>: calll  0x80484c0                 ; symbol stub for: puts
+level07[0x80486af] <+127>: movl   $0x8048ae6, (%esp)        ; imm = 0x8048AE6
+level07[0x80486b6] <+134>: calll  0x80484c0                 ; symbol stub for: puts
+level07[0x80486bb] <+139>: movl   $0x1, %eax
+level07[0x80486c0] <+144>: jmp    0x80486d5                 ; <+165>
+level07[0x80486c2] <+146>: movl   -0xc(%ebp), %eax
+level07[0x80486c5] <+149>: shll   $0x2, %eax
+level07[0x80486c8] <+152>: addl   0x8(%ebp), %eax
+level07[0x80486cb] <+155>: movl   -0x10(%ebp), %edx
+level07[0x80486ce] <+158>: movl   %edx, (%eax)
+level07[0x80486d0] <+160>: movl   $0x0, %eax
+level07[0x80486d5] <+165>: leave
+level07[0x80486d6] <+166>: retl
+
+
+
+(lldb) disass -n prog_timeout
+level07`prog_timeout:
+level07[0x804861f] <+0>:  pushl  %ebp
+level07[0x8048620] <+1>:  movl   %esp, %ebp
+level07[0x8048622] <+3>:  movl   $0x1, %eax
+level07[0x8048627] <+8>:  movl   $0x1, %ebx
+level07[0x804862c] <+13>: int    $0x80
+level07[0x804862e] <+15>: popl   %ebp
+level07[0x804862f] <+16>: retl
+
+
+
+(lldb) disass -n get_unum
+level07`get_unum:
+level07[0x80485e7] <+0>:  pushl  %ebp
+level07[0x80485e8] <+1>:  movl   %esp, %ebp
+level07[0x80485ea] <+3>:  subl   $0x28, %esp
+level07[0x80485ed] <+6>:  movl   $0x0, -0xc(%ebp)
+level07[0x80485f4] <+13>: movl   0x804a060, %eax
+level07[0x80485f9] <+18>: movl   %eax, (%esp)
+level07[0x80485fc] <+21>: calll  0x8048480                 ; symbol stub for: fflush
+level07[0x8048601] <+26>: movl   $0x8048ad0, %eax          ; imm = 0x8048AD0
+level07[0x8048606] <+31>: leal   -0xc(%ebp), %edx
+level07[0x8048609] <+34>: movl   %edx, 0x4(%esp)
+level07[0x804860d] <+38>: movl   %eax, (%esp)
+level07[0x8048610] <+41>: calll  0x8048500                 ; symbol stub for: __isoc99_scanf
+level07[0x8048615] <+46>: calll  0x80485c4                 ; clear_stdin
+level07[0x804861a] <+51>: movl   -0xc(%ebp), %eax
+level07[0x804861d] <+54>: leave
+level07[0x804861e] <+55>: retl
+
+
+
+(lldb) disass -n clear_stdin
+level07`clear_stdin:
+level07[0x80485c4] <+0>:  pushl  %ebp
+level07[0x80485c5] <+1>:  movl   %esp, %ebp
+level07[0x80485c7] <+3>:  subl   $0x18, %esp
+level07[0x80485ca] <+6>:  movb   $0x0, -0x9(%ebp)
+level07[0x80485ce] <+10>: jmp    0x80485d1                 ; <+13>
+level07[0x80485d0] <+12>: nop
+level07[0x80485d1] <+13>: calll  0x8048490                 ; symbol stub for: getchar
+level07[0x80485d6] <+18>: movb   %al, -0x9(%ebp)
+level07[0x80485d9] <+21>: cmpb   $0xa, -0x9(%ebp)
+level07[0x80485dd] <+25>: je     0x80485e5                 ; <+33>
+level07[0x80485df] <+27>: cmpb   $-0x1, -0x9(%ebp)
+level07[0x80485e3] <+31>: jne    0x80485d0                 ; <+12>
+level07[0x80485e5] <+33>: leave
+level07[0x80485e6] <+34>: retl
+
+
+
+(lldb) disass -n frame_dummy
+level07`frame_dummy:
+level07[0x80485a0] <+0>:  pushl  %ebp
+level07[0x80485a1] <+1>:  movl   %esp, %ebp
+level07[0x80485a3] <+3>:  subl   $0x18, %esp
+level07[0x80485a6] <+6>:  movl   0x8049f24, %eax
+level07[0x80485ab] <+11>: testl  %eax, %eax
+level07[0x80485ad] <+13>: je     0x80485c1                 ; <+33>
+level07[0x80485af] <+15>: movl   $0x0, %eax
+level07[0x80485b4] <+20>: testl  %eax, %eax
+level07[0x80485b6] <+22>: je     0x80485c1                 ; <+33>
+level07[0x80485b8] <+24>: movl   $0x8049f24, (%esp)        ; imm = 0x8049F24
+level07[0x80485bf] <+31>: calll  *%eax
+level07[0x80485c1] <+33>: leave
+level07[0x80485c2] <+34>: retl
+level07[0x80485c3] <+35>: nop
